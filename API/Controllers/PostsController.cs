@@ -20,7 +20,7 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// Get api/posts
+        /// GET api/posts
         /// </summary>
         /// <returns>A list of posts</returns>
         [HttpGet]
@@ -30,7 +30,7 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// Get api/post/[id]
+        /// GET api/post/[id]
         /// </summary>
         /// <param name="id">Post id</param>
         /// <returns>A single post</returns>
