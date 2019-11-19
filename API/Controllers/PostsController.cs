@@ -97,6 +97,11 @@ namespace API.Controllers
             throw new Exception("Error updating post");
         }
 
+        /// <summary>
+        /// DELETE api/post/[id]
+        /// </summary>
+        /// <param name="id">Post id</param>
+        /// <returns>True, if successful</returns>
         [HttpDelete("{id}")]
 
         public ActionResult<bool> Delete(Guid id)
