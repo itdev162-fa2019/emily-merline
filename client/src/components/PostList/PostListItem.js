@@ -4,14 +4,14 @@ import slugify from 'slugify'
 import './styles.css'
 
 const PostListItem = props => {
-    const { post, clickPost, deletePost } = props;
-    const history = useHistory();
+    const { post, clickPost, deletePost } = props
+    const history = useHistory()
 
     const handleClickPost = post => {
-        const slug = slugify(post.title, { lower: true });
+        const slug = slugify(post.title, { lower: true })
 
         clickPost(post);
-        history.push(`/posts/${slug}`);
+        history.push(`/posts/${slug}`)
     }
 
     return (
@@ -28,4 +28,4 @@ const PostListItem = props => {
     )
 }
 
-export default PostListItem;
+export default PostListItem
