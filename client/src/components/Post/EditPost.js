@@ -4,7 +4,7 @@ import moment from 'moment'
 import { useHistory } from 'react-router-dom'
 import './styles.css'
 
-const EditPost = ({ post, onPostUpdate }) => {
+const EditPost = ({ post, onPostUpdated }) => {
     let history = useHistory()
     const [postData, setPostData] = useState({
         title: post.title,
@@ -41,7 +41,7 @@ const EditPost = ({ post, onPostUpdate }) => {
 
                 //Create the post
                 const body = JSON.stringify(newPost)
-                const res = await axios.post(
+                const res = await axios.put(
                     'http://localhost:5000/api/posts',
                     body,
                     config
