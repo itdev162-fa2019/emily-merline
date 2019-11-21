@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import uuid from 'uuid'
 import moment from 'moment'
 import { useHistory } from 'react-router-dom'
 import './styles.css'
 
-const CreatePost = ({ onPostCreated }) => {
+const EditPost = ({ post, onPostUpdate }) => {
     let history = useHistory()
     const [postData, setPostData] = useState({
-        title: '',
-        body: ''
+        title: post.title,
+        body: post.body
     })
     const { title, body } = postData
-    
     const onChange = e => {
         const { name, value } = e.target 
 
@@ -22,17 +20,18 @@ const CreatePost = ({ onPostCreated }) => {
         })
     }
 
-    const create = async () => {
-        if(!title || !body) {
+    const update = async () => {
+        if (!title || !body) {
             console.log('Title and body are required')
         } else {
             const newPost = {
-                id: uuid.v4(),
+                id: post.id,
                 title: title,
                 body: body,
                 date: moment().toISOString()
             }
 
+            
             try {
                 const config = {
                     headers: {
@@ -49,7 +48,7 @@ const CreatePost = ({ onPostCreated }) => {
                 )
 
                 //Call the handler and redirect
-                onPostCreated(res.data)
+                onPostUpdated(res.data)
                 history.push('/')
             } catch (error) {
                 console.error(`Error creating posts: ${error.response.data}`)
@@ -59,7 +58,7 @@ const CreatePost = ({ onPostCreated }) => {
 
     return (
         <div className="form-container">
-            <h2>Create New Post</h2>
+            <h2>Edit Post</h2>
             <input
                 name="title"
                 type="text"
@@ -74,9 +73,9 @@ const CreatePost = ({ onPostCreated }) => {
                 value={body}
                 onChange={e => onChange(e)}
             ></textarea>
-            <button onClick={() => create()}>Submit</button>
+            <button onClick={() => update()}>Submit</button>
         </div>
     )
 }
 
-export default CreatePost
+export default EditPost
